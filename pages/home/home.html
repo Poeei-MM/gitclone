@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button="" menuToggle="">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addPost()" ><ion-icon end name='add'></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-card class="post"
+          text-wrap
+          *ngFor="let post of posts | async">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="post.userImage" (click)="avatarTapped(card)">
+        </ion-avatar>
+        <h3>{{post.userName}}</h3>
+        <p>{{post.date_time}}</p>
+      </ion-item>
+      <img [src]="post.postImage" (click)="imageTapped(card)">
+      <ion-card-content>
+        <p>{{post.description}}</p>
+      </ion-card-content>
+      <ion-card-content>
+        Price : <p>{{post.price}}</p>
+        Discount : <p>{{post.discount}}</p>
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-left (click)="like(card)">
+            <ion-icon name='heart'></ion-icon>
+            Favorite
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-left (click)="getLocation(post.lat,post.long,post.userName)">
+            <ion-icon name='locate'></ion-icon>
+            Route
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-left (click)="like(card)">
+            <ion-icon name='cart'></ion-icon>
+            Cart
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab mini  color="primary" (click)="search()"><ion-icon name="search"></ion-icon></button>
+  </ion-fab>
+</ion-content>

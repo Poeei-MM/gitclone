@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-searchbar class="input" type="text" placeholder="search...." (ionInput)="search($event)"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+<!--*ngFor=" let c of locations"-->
+ 
+ <ion-list >    
+        <ion-item *ngFor="let item of postList" (click)="show1(loc)">
+           <div>
+              <h4>{{item?.userName}}</h4>
+              <p>
+                {{item?.description}}
+              </p>
+            </div>
+            <div *ngIf="item?.length < 1">
+              <hr>
+              <p>
+                No results found :(
+              </p>
+            </div>
+        </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <button ion-button full color="primary" (click)="dismiss()">Cancel
+      </button>
+</ion-footer>
+
